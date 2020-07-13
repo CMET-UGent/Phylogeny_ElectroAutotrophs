@@ -9,6 +9,8 @@ File/Folder | Contents
 Source_data | Raw and processed datafiles used for downstream processing.
 EPA.Rmd     | Code documention of the evolutionary placement algorithms and pre-processing of raw data. 
 Processing.R| supporting code for pre-processing of data required for `EPA.Rmd`
+EPA.md      | Markdown rendering of `EPA.Rmd`
+
 
 ## Dependencies
 
