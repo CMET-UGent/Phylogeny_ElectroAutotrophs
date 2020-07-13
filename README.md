@@ -1,6 +1,7 @@
 # Phylogeny_ElectroAutotrophs
 
-Underlying code and data for the bio-informatics of Prévoteau *et al.* (2020)
+Underlying code and data for the data analysis of Prévoteau *et al.* (2020). 
+Released under GPL-3. 
 
 ## File and folder structure
 
@@ -9,8 +10,8 @@ File/Folder | Contents
 Source_data | Raw and processed datafiles used for downstream processing.
 EPA.Rmd     | Code documention of the evolutionary placement algorithms and pre-processing of raw data. 
 Processing.R| supporting code for pre-processing of data required for `EPA.Rmd`
-EPA.md      | Markdown rendering of `EPA.Rmd`
-
+[EPA.md](https://github.com/CMET-UGent/Phylogeny_ElectroAutotrophs/blob/master/EPA.md)      | Markdown rendering of `EPA.Rmd`
+EPA_fileS/figure-html | Folder to store rendered figures for `EPA.md`
 
 ## Dependencies
 
