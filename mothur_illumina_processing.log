@@ -1,0 +1,532 @@
+# start mothur
+
+> make.contigs(file=Biocathode.files,oligos=bc.oligos, processors=12)
+It took 25 secs to assemble 50960 reads.
+Group count:
+PeterC01        33643
+PeterC02        21503
+PeterC03        7637
+PeterC04        45928
+PeterC05        19668
+RB2015_2B       10494
+RB2015_2K       15088
+RB2015_4B       32154
+RB2015_4K       56029
+RB2015_6B       9383
+RB2015_6K       50960
+Total of all groups is 302487
+It took 144 secs to process 302487 sequences.
+Output File Names:
+Biocathode.trim.contigs.fasta
+Biocathode.trim.contigs.qual
+Biocathode.scrap.contigs.fasta
+Biocathode.scrap.contigs.qual
+Biocathode.contigs.report
+Biocathode.contigs.groups
+
+>summary.seqs(fasta=Biocathode.trim.contigs.fasta, processors=12)
+Using 12 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       123     123     0       3       1
+2.5%-tile:      1       400     400     0       4       7563
+25%-tile:       1       404     404     0       4       75622
+Median:         1       407     407     0       4       151244
+75%-tile:       1       427     427     1       5       226866
+97.5%-tile:     1       427     427     8       6       294925
+Maximum:        1       547     547     43      228     302487
+Mean:   1       414     414     0       4
+# of Seqs:      302487
+It took 2 secs to summarize 302487 sequences.
+Output File Names:
+ Biocathode.trim.contigs.summary
+ 
+# Merging this dataset with Prevoteau et al. 2019
+>merge.files(input=BKBC.trim.contigs.fasta-Biocathode.trim.contigs.fasta, output=BioCathV3V4.trim.contigs.fasta)
+Output File Names:
+BioCathV3V4.trim.contigs.fasta
+> merge.files(input=BKBC.contigs.groups-Biocathode.contigs.groups, output=BioCathV3V4.contigs.groups)
+Output File Names:
+BioCathV3V4.contigs.groups
+ 
+> count.groups(group=BioCathV3V4.contigs.groups)
+PeterC01 contains 33643.
+PeterC01_TW contains 17161.
+PeterC02 contains 21503.
+PeterC02_TW contains 23512.
+PeterC03 contains 7637.
+PeterC03_TW contains 24238.
+PeterC04 contains 45928.
+PeterC04_TW contains 14928.
+PeterC05 contains 19668.
+PeterC05_TW contains 13835.
+PeterC06_TW contains 1293.
+PeterC07_TW contains 1566.
+PeterC08_TW contains 16741.
+RB2015_2B contains 10494.
+RB2015_2K contains 15088.
+RB2015_4B contains 32154.
+RB2015_4K contains 56029.
+RB2015_6B contains 9383.
+RB2015_6K contains 50960.
+Soup01 contains 19006.
+Soup02 contains 14386.
+Soup03 contains 15520.
+Soup04 contains 15886.
+Soup05 contains 21363.
+Total seqs: 501922.
+Output File Names:
+BioCathV3V4.contigs.count.summary
+
+>summary.seqs(fasta=BioCathV3V4.trim.contigs.fasta, processors=16)
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       51      51      0       3       1
+2.5%-tile:      1       400     400     0       4       12549
+25%-tile:       1       404     404     0       4       125481
+Median:         1       407     407     0       4       250962
+75%-tile:       1       427     427     0       5       376442
+97.5%-tile:     1       427     427     7       6       489374
+Maximum:        1       562     562     48      234     501922
+Mean:   1       414     414     0       4
+# of Seqs:      501922
+It took 3 secs to summarize 501922 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.summary
+
+
+>screen.seqs(fasta=BioCathV3V4.trim.contigs.fasta,group=BioCathV3V4.contigs.groups,maxambig=0,minlength=400,maxlength=430,processors=16)
+It took 2 secs to screen 501922 sequences, removed 95987.
+
+/******************************************/
+Running command: remove.seqs(accnos=BioCathV3V4.trim.contigs.bad.accnos, group=BioCathV3V4.contigs.groups)
+Removed 95987 sequences from your group file.
+Output File Names:
+BioCathV3V4.contigs.pick.groups
+/******************************************/
+Output File Names:
+BioCathV3V4.trim.contigs.good.fasta
+BioCathV3V4.trim.contigs.bad.accnos
+BioCathV3V4.contigs.good.groups
+It took 4 secs to screen 501922 sequences.
+
+
+
+> summary.seqs(fasta=BioCathV3V4.trim.contigs.good.fasta)
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       400     400     0       3       1
+2.5%-tile:      1       400     400     0       4       10149
+25%-tile:       1       404     404     0       4       101484
+Median:         1       407     407     0       4       202968
+75%-tile:       1       427     427     0       5       304452
+97.5%-tile:     1       427     427     0       6       395787
+Maximum:        1       430     430     0       12      405935
+Mean:   1       414     414     0       4
+# of Seqs:      405935
+It took 3 secs to summarize 405935 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.summary
+
+
+> count.groups(group=BioCathV3V4.contigs.good.groups)
+PeterC01 contains 21015.
+PeterC01_TW contains 15240.
+PeterC02 contains 13978.
+PeterC02_TW contains 21235.
+PeterC03 contains 4543.
+PeterC03_TW contains 21598.
+PeterC04 contains 29757.
+PeterC04_TW contains 13512.
+PeterC05 contains 12818.
+PeterC05_TW contains 12372.
+PeterC06_TW contains 1170.
+PeterC07_TW contains 1381.
+PeterC08_TW contains 15134.
+RB2015_2B contains 8582.
+RB2015_2K contains 12739.
+RB2015_4B contains 27289.
+RB2015_4K contains 45612.
+RB2015_6B contains 7590.
+RB2015_6K contains 42052.
+Soup01 contains 17292.
+Soup02 contains 13163.
+Soup03 contains 14085.
+Soup04 contains 14309.
+Soup05 contains 19469.
+Total seqs: 405935.
+Output File Names:
+BioCathV3V4.contigs.good.count.summary
+
+
+>unique.seqs(fasta=BioCathV3V4.trim.contigs.good.fasta)
+Output File Names:
+BioCathV3V4.trim.contigs.good.names
+BioCathV3V4.trim.contigs.good.unique.fasta
+
+> count.seqs(name=BioCathV3V4.trim.contigs.good.names, group=BioCathV3V4.contigs.good.groups)
+It took 3 secs to create a table for 405935 sequences.
+Total number of sequences: 405935
+Output File Names:
+BioCathV3V4.trim.contigs.good.count_table
+
+
+
+> align.seqs(seed=clear, fasta=BioCathV3V4.trim.contigs.good.unique.fasta, reference=silva.seed_v123.pcr341f785routside.align, flip=T, processors=16)
+It took 202 secs to align 137681 sequences.
+[WARNING]: 4 of your sequences generated alignments that eliminated too many bases, a list is provided in BioCathV3V4.trim.contigs.good.unique.flip.accnos.
+[NOTE]: 3 of your sequences were reversed to produce a better alignment.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.align
+BioCathV3V4.trim.contigs.good.unique.align.report
+BioCathV3V4.trim.contigs.good.unique.flip.accnos
+ 
+
+>summary.seqs(fasta=current,count=current)                                                                                       
+Using BioCathV3V4.trim.contigs.good.count_table as input file for the count parameter.
+Using BioCathV3V4.trim.contigs.good.unique.align as input file for the fasta parameter.
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       15708   5       0       2       1
+2.5%-tile:      40      17052   400     0       4       10149
+25%-tile:       40      17052   404     0       4       101484
+Median:         40      17052   407     0       4       202968
+75%-tile:       40      17052   427     0       5       304452
+97.5%-tile:     40      17052   427     0       6       395787
+Maximum:        18905   18928   430     0       12      405935
+Mean:   53      17051   414     0       4
+# of unique seqs:       137681
+total # of seqs:        405935
+It took 8 secs to summarize 405935 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.summary
+
+ 
+>screen.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.align, count=BioCathV3V4.trim.contigs.good.count_table, summary=BioCathV3V4.trim.contigs.good.unique.summary, start=40, end=17052, maxhomop=12, processors=16)
+It took 12 secs to screen 137681 sequences, removed 2925.
+/******************************************/
+Running command: remove.seqs(accnos=BioCathV3V4.trim.contigs.good.unique.bad.accnos, count=BioCathV3V4.trim.contigs.good.count_table)
+Removed 4545 sequences from your count file.
+Output File Names:
+BioCathV3V4.trim.contigs.good.pick.count_table
+/******************************************/
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.summary
+BioCathV3V4.trim.contigs.good.unique.good.align
+BioCathV3V4.trim.contigs.good.unique.bad.accnos
+BioCathV3V4.trim.contigs.good.good.count_table
+It took 17 secs to screen 137681 sequences.
+
+
+> summary.seqs(fasta=current,count=current)                                                                                    Using BioCathV3V4.trim.contigs.good.good.count_table as input file for the count parameter.
+Using BioCathV3V4.trim.contigs.good.unique.good.align as input file for the fasta parameter.
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       17052   400     0       3       1
+2.5%-tile:      40      17052   400     0       4       10035
+25%-tile:       40      17052   404     0       4       100348
+Median:         40      17052   407     0       4       200696
+75%-tile:       40      17052   427     0       5       301043
+97.5%-tile:     40      17052   427     0       6       391356
+Maximum:        40      18928   430     0       12      401390
+Mean:   39      17052   414     0       4
+# of unique seqs:       134756
+total # of seqs:        401390
+It took 8 secs to summarize 401390 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.good.summary
+
+
+>filter.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.align, vertical=T, trump=.)
+It took 7 secs to filter 134756 sequences.
+Length of filtered alignment: 922
+Number of columns removed: 18006
+Length of the original alignment: 18928
+Number of sequences used to construct filter: 134756
+Output File Names:
+BioCathV3V4.filter
+BioCathV3V4.trim.contigs.good.unique.good.filter.fasta
+
+
+
+> summary.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.fasta,count=BioCathV3V4.trim.contigs.good.good.count_table) Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       922     394     0       3       1
+2.5%-tile:      1       922     400     0       4       10035
+25%-tile:       1       922     404     0       4       100348
+Median:         1       922     407     0       4       200696
+75%-tile:       1       922     427     0       5       301043
+97.5%-tile:     1       922     427     0       6       391356
+Maximum:        3       922     430     0       12      401390
+Mean:   1       922     414     0       4
+# of unique seqs:       134756
+total # of seqs:        401390
+It took 3 secs to summarize 401390 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.good.filter.summary
+
+
+
+> unique.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.fasta,count=BioCathV3V4.trim.contigs.good.good.count_table)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.count_table
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.fasta
+
+>summary.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.fasta,count=BioCathV3V4.trim.contigs.good.unique.good.filter.count_table,processors=16)
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       922     394     0       3       1
+2.5%-tile:      1       922     400     0       4       10035
+25%-tile:       1       922     404     0       4       100348
+Median:         1       922     407     0       4       200696
+75%-tile:       1       922     427     0       5       301043
+97.5%-tile:     1       922     427     0       6       391356
+Maximum:        3       922     430     0       12      401390
+Mean:   1       922     414     0       4
+# of unique seqs:       134740
+total # of seqs:        401390
+It took 2 secs to summarize 401390 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.good.filter.unique.summary
+
+
+
+>pre.cluster(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.fasta,count=BioCathV3V4.trim.contigs.good.unique.good.filter.count_table, diffs=4, processors=16)
+It took 21 secs to run pre.cluster.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.fasta
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.count_table
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC01.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC01_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC02.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC02_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC03.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC03_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC04.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC04_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC05.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC05_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC06_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC07_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.PeterC08_TW.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.RB2015_2B.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.RB2015_2K.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.RB2015_4B.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.RB2015_4K.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.RB2015_6B.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.RB2015_6K.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.Soup01.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.Soup02.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.Soup03.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.Soup04.map
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.Soup05.map
+
+
+> summary.seqs(fasta=current,count=current)
+Using BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.count_table as input file for the count parameter.
+Using BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.fasta as input file for the fasta parameter.
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       922     394     0       3       1
+2.5%-tile:      1       922     400     0       4       10035
+25%-tile:       1       922     404     0       4       100348
+Median:         1       922     407     0       4       200696
+75%-tile:       1       922     427     0       5       301043
+97.5%-tile:     1       922     427     0       6       391356
+Maximum:        3       922     430     0       12      401390
+Mean:   1       922     414     0       4
+# of unique seqs:       29970
+total # of seqs:        401390
+It took 1 secs to summarize 401390 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.summary
+
+
+>chimera.uchime(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=t, processors=16)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.chimeras
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.accnos
+
+> remove.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.accnos)
+[WARNING]: This command can take a namefile and you did not provide one. The current namefile is BioCathV3V4.trim.contigs.good.names which seems to match BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.fasta.
+Removed 15780 sequences from your fasta file.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+
+
+> summary.seqs(fasta=current,count=current)
+Using BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table as input file for the count parameter.
+Using BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta as input file for the fasta parameter.
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       922     394     0       3       1
+2.5%-tile:      1       922     400     0       4       9370
+25%-tile:       1       922     404     0       4       93699
+Median:         1       922     407     0       4       187398
+75%-tile:       1       922     427     0       5       281097
+97.5%-tile:     1       922     427     0       6       365426
+Maximum:        1       922     430     0       12      374795
+Mean:   1       922     414     0       4
+# of unique seqs:       14190
+total # of seqs:        374795
+It took 0 secs to summarize 374795 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.summary
+
+
+> classify.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table, reference=silva.nr_v132.align, taxonomy=silva.nr_v132.tax, cutoff=80, processors=16)
+Using 16 processors.
+Reading template taxonomy...     DONE.
+Reading template probabilities...     DONE.
+It took 25 seconds get probabilities.
+Classifying sequences from BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta ...
+[WARNING]: M02042_116_000000000-BFDHG_1_1112_23427_10042 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+It took 229 secs to classify 14190 sequences.
+It took 1 secs to create the summary file for 14190 sequences.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.tax.summary
+
+
+>remove.lineage(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)
+[NOTE]: The count file should contain only unique names, so mothur assumes your fasta, list and taxonomy files also contain only uniques.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.pick.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table
+
+> summary.seqs(fasta=current,count=current)
+Using BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table as input file for the count parameter.
+Using BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta as input file for the fasta parameter.
+Using 16 processors.
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       922     394     0       3       1
+2.5%-tile:      1       922     400     0       4       9366
+25%-tile:       1       922     404     0       4       93653
+Median:         1       922     407     0       4       187306
+75%-tile:       1       922     427     0       5       280959
+97.5%-tile:     1       922     427     0       6       365246
+Maximum:        1       922     430     0       12      374611
+Mean:   1       922     414     0       4
+# of unique seqs:       14184
+total # of seqs:        374611
+It took 0 secs to summarize 374611 sequences.
+Output File Names:
+ BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.summary
+
+
+> cluster.split(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.pick.taxonomy, splitmethod=classify, taxlevel=4, processors=16)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.sensspec
+
+> make.shared(list=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table, label=0.03)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.shared
+
+> classify.otu(list=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.pick.taxonomy, label=0.03)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary
+
+
+> system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy BioCathV3V4.silva132.taxonomy)
+
+> system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary BioCathV3V4.silva132.tax.summary)
+
+> get.oturep(list=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table, fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, method=abundance)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.rep.count_table
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.rep.fasta
+
+> classify.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table, reference=trainset16_022016.pds.fasta , taxonomy=trainset16_022016.pds.tax, cutoff=80, processors=16)
+Using 16 processors.
+Reading template taxonomy...     DONE.
+Reading template probabilities...     DONE.
+It took 6 seconds get probabilities.
+Classifying sequences from BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta ...
+It took 67 secs to classify 14190 sequences.
+It took 1 secs to create the summary file for 14190 sequences.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
+
+
+> classify.otu(list=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, label=0.03)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary
+
+
+> system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy BioCathV3V4.rdp16.taxonomy)
+
+> system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary BioCathV3V4.rdp16.tax.summary)
+
+
+> classify.seqs(fasta=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.count_table, reference=eztaxon_full.align , taxonomy=eztaxon_id_taxonomy.tax, cutoff=85, processors=16)
+Using 16 processors.
+Reading template taxonomy...     DONE.
+Reading template probabilities...     DONE.
+It took 132 seconds get probabilities.
+Classifying sequences from BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta ...
+[WARNING]: M04481_118_000000000-BWJW7_1_1118_21738_23289 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M04070_106_000000000-BDB7W_1_2114_7505_9043 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M04481_118_000000000-BWJW7_1_2107_11338_15172 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+It took 2129 secs to classify 14190 sequences.
+It took 2 secs to create the summary file for 14190 sequences.
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.eztaxon_id_taxonomy.wang.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.eztaxon_id_taxonomy.wang.tax.summary
+
+
+
+> classify.otu(list=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.eztaxon_id_taxonomy.wang.taxonomy, label=0.03)
+Output File Names:
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy
+BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary
+
+
+> system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy BioCathV3V4.eztaxon.taxonomy)
+
+> system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary BioCathV3V4.eztaxon.tax.summary)
+
+
+#### kronas
+
+system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list biocath.list)
+system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table biocath.table) 
+
+> classify.otu(list=biocath.list, count=biocath.table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.nr_v132.wang.pick.taxonomy, basis=sequence, label=0.03)
+Output File Names:
+biocath.0.03.cons.taxonomy
+biocath.0.03.cons.tax.summary
+
+mothur2krona biocath.0.03.cons.tax.summary > Biocath_Silva132.xml
+ktImportXML -o Biocath_Silva132.html Biocath_Silva132.xml
+
+system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list biocathrdp.list)
+system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table biocathrdp.table) 
+
+> classify.otu(list=biocathrdp.list, count=biocathrdp.table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, basis=sequence, label=0.03)
+0.03    14184
+Output File Names:
+biocathrdp.0.03.cons.taxonomy
+biocathrdp.0.03.cons.tax.summary
+
+
+mothur2krona biocathrdp.0.03.cons.tax.summary > Biocath_RDP16.xml
+ktImportXML -o Biocath_RDP16.html Biocath_RDP16.xml
+
+system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list biocathezt.list)
+system(cp BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.denovo.uchime.pick.pick.count_table biocathezt.table) 
+
+> classify.otu(list=biocathezt.list, count=biocathezt.table, taxonomy=BioCathV3V4.trim.contigs.good.unique.good.filter.unique.precluster.pick.eztaxon_id_taxonomy.wang.taxonomy, basis=sequence, label=0.03)
+0.03    14184
+Output File Names:
+biocathezt.0.03.cons.taxonomy
+biocathezt.0.03.cons.tax.summary
+
+
+mothur2krona biocathezt.0.03.cons.tax.summary > Biocath_EZT.xml
+ktImportXML -o Biocath_EZT.html Biocath_EZT.xml

@@ -12,6 +12,9 @@ EPA.Rmd     | Code documention of the evolutionary placement algorithms and pre-
 Processing.R| supporting code for pre-processing of data required for `EPA.Rmd`
 [EPA.md](https://github.com/CMET-UGent/Phylogeny_ElectroAutotrophs/blob/master/EPA.md)      | Markdown rendering of `EPA.Rmd`
 EPA_fileS/figure-html | Folder to store rendered figures for `EPA.md`
+mothur_illumina_processing.log | log file containing commands and output for the mothur-based data-processing
+Biocathode.files | mothur-compatible files file to indicate which files to merge (associated with genbank PRJNA641381)
+bc.oligos | mothur-compatible oligos file with the primer-set used
 
 ## Dependencies
 
