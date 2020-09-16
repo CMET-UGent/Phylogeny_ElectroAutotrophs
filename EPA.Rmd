@@ -1545,15 +1545,26 @@ abline(v=805,lty=2,col="darkgreen")
 
 ## Full length tree
 
-```{r EddieTreeepang, engine='bash',eval=FALSE}
+```{r FLTreeepang, engine='bash',eval=FALSE}
 raxmlHPC-PTHREADS-AVX -f e -s full_lengthwithOG_minimizedDNA.fasta.reduced \
- -t RAxML_bestTree.FulllennoOTUwOGMLtree \
- -n file -m GTRGAMMA -u -k -T 12 \
- -w /media/projects1/FMeh/Biokitteh/EPA2/
+ -t EPA2/RAxML_bipartitions.FulllennoOTUwOGMLtreewithBPinfo \
+ -n file2 -m GTRGAMMA -u -k -T 12 \
+ -w EPA2/
 <!-- Warning, you specified a working directory via "-w" -->
 <!-- Keep in mind that RAxML only accepts absolute path names, not relative ones! -->
 <!-- Using BFGS method to optimize GTR rate parameters, to disable this specify "--no-bfgs" -->
 <!-- This is RAxML version 8.2.12 released by Alexandros Stamatakis on May 2018. -->
+<!-- With greatly appreciated code contributions by: -->
+<!-- Andre Aberer      (HITS) -->
+<!-- Simon Berger      (HITS) -->
+<!-- Alexey Kozlov     (HITS) -->
+<!-- Kassian Kobert    (HITS) -->
+<!-- David Dao         (KIT and HITS) -->
+<!-- Sarah Lutteropp   (KIT and HITS) -->
+<!-- Nick Pattengale   (Sandia) -->
+<!-- Wayne Pfeiffer    (SDSC) -->
+<!-- Akifumi S. Tanabe (NRIFS) -->
+<!-- Charlie Taylor    (UF) -->
 <!-- Alignment has 886 distinct alignment patterns -->
 <!-- Proportion of gaps and completely undetermined characters in this alignment: 13.97% -->
 <!-- RAxML Model Optimization up to an accuracy of 0.100000 log likelihood units -->
@@ -1567,64 +1578,72 @@ raxmlHPC-PTHREADS-AVX -f e -s full_lengthwithOG_minimizedDNA.fasta.reduced \
 <!-- DataType: DNA -->
 <!-- Substitution Matrix: GTR -->
 <!-- RAxML was called as follows: -->
-<!-- raxmlHPC-PTHREADS-AVX -f e -s full_lengthwithOG_minimizedDNA.fasta.reduced -t RAxML_bestTree.FulllennoOTUwOGMLtree -n file -m GTRGAMMA -u -k -T 12 -w EPA2/ -->
-<!-- Model parameters (binary file format) written to: EPA2/RAxML_binaryModelParameters.file -->
-<!-- 0.515124 -26772.971868 -->
-<!-- Overall Time for Tree Evaluation 0.515418 -->
-<!-- Final GAMMA  likelihood: -26772.971868 -->
+<!-- raxmlHPC-PTHREADS-AVX -f e -s full_lengthwithOG_minimizedDNA.fasta.reduced -t EPA2/RAxML_bipartitions.FulllennoOTUwOGMLtreewithBPinfo -n file2 -m GTRGAMMA -u -k -T 12 -w EPA2/ -->
+<!-- Model parameters (binary file format) written to: EPA2/RAxML_binaryModelParameters.file2 -->
+<!-- 0.515887 -26771.831522 -->
+<!-- Overall Time for Tree Evaluation 0.516161 -->
+<!-- Final GAMMA  likelihood: -26771.831522 -->
 <!-- Number of free parameters for AIC-TEST(BR-LEN): 200 -->
 <!-- Number of free parameters for AIC-TEST(NO-BR-LEN): 9 -->
 <!-- Model Parameters of Partition 0, Name: No Name Provided, Type of Data: DNA -->
-<!-- alpha: 0.239628 -->
-<!-- Tree-Length: 6.291059 -->
-<!-- rate A <-> C: 0.805564 -->
-<!-- rate A <-> G: 2.460989 -->
-<!-- rate A <-> T: 1.417733 -->
-<!-- rate C <-> G: 0.864508 -->
-<!-- rate C <-> T: 3.733443 -->
+<!-- alpha: 0.235409 -->
+<!-- Tree-Length: 6.207057 -->
+<!-- rate A <-> C: 0.797474 -->
+<!-- rate A <-> G: 2.439650 -->
+<!-- rate A <-> T: 1.420744 -->
+<!-- rate C <-> G: 0.867885 -->
+<!-- rate C <-> T: 3.743999 -->
 <!-- rate G <-> T: 1.000000 -->
 <!-- freq pi(A): 0.248253 -->
 <!-- freq pi(C): 0.229980 -->
 <!-- freq pi(G): 0.320656 -->
 <!-- freq pi(T): 0.201112 -->
-<!-- Final tree written to:              EPA2/RAxML_result.file -->
-<!-- Execution Log File written to:      EPA2/RAxML_log.file -->
+<!-- Final tree written to:           EPA2/RAxML_result.file2 -->
+<!-- Execution Log File written to:   EPA2/RAxML_log.file2 -->
 
+
+
+cp full_lengthwithOG_minimizedDNA.fasta.reduced  ./epangoutput/
 
 cd epangoutput
 
-epa-ng --ref-msa noOTUMinimized.fasta --tree EPA2/RAxML_bestTree.FulllennoOTUwOGMLtree --query OTUonlyMinimized.fasta --outdir EPA2/epangoutput/ --threads 8 --model /EPA2/RAxML_info.file
-<!-- INFO Selected: Output dir: /media/projects1/FMeh/Biokitteh/EPA2/epangoutput/ -->
+ epa-ng --ref-msa noOTUMinimized.fasta \
+ --tree EPA2/RAxML_bipartitions.FulllennoOTUwOGMLtreewithBPinfo \
+ --query OTUonlyMinimized.fasta \
+ --outdir /EPA2/epangoutput/ --threads 6 --model EPA2/RAxML_info.file2
+<!-- INFO Selected: Output dir: EPA2/epangoutput/ -->
 <!-- INFO Selected: Query file: OTUonlyMinimized.fasta -->
-<!-- INFO Selected: Tree file: /media/projects1/FMeh/Biokitteh/EPA2/RAxML_bestTree.FulllennoOTUwOGMLtree -->
+<!-- INFO Selected: Tree file: EPA2/RAxML_bipartitions.FulllennoOTUwOGMLtreewithBPinfo -->
 <!-- INFO Selected: Reference MSA: noOTUMinimized.fasta -->
-<!-- INFO Selected: Specified model file: /media/projects1/FMeh/Biokitteh/EPA2/RAxML_info.file -->
-<!-- INFO    Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.239628 (user),  weights&rates: (0.25,0.0016631) (0.25,0.0593085) (0.25,0.479096) (0.25,3.45993) -->
+<!-- INFO Selected: Specified model file: EPA2/RAxML_info.file2 -->
+<!-- INFO    Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.235409 (user),  weights&rates: (0.25,0.00150005) (0.25,0.0563741) (0.25,0.469689) (0.25,3.47244) -->
 <!--         Base frequencies (user): 0.248253 0.22998 0.320656 0.201112 -->
-<!--         Substitution rates (user): 0.805564 2.46099 1.41773 0.864508 3.73344 1 -->
-<!-- INFO Selected: Using threads: 8 -->
+<!--         Substitution rates (user): 0.797474 2.43965 1.42074 0.867885 3.744 1 -->
+<!-- INFO Selected: Using threads: 6 -->
 <!-- INFO     ______ ____   ___           _   __ ______ -->
 <!--         / ____// __ \ /   |         / | / // ____/ -->
 <!--        / __/  / /_/ // /| | ______ /  |/ // / __ -->
 <!--       / /___ / ____// ___ |/_____// /|  // /_/ / -->
 <!--      /_____//_/    /_/  |_|      /_/ |_/ \____/ (v0.2.1-beta) -->
 <!-- INFO Number of ranks: 1 -->
-<!-- INFO Output file: /media/projects1/FMeh/Biokitteh/EPA2/epangoutput/epa_result.jplace -->
+<!-- INFO Output file: EPA2/epangoutput/epa_result.jplace -->
 <!-- INFO 63 Sequences done! -->
 <!-- INFO Time spent placing: 0s -->
 <!-- INFO Elapsed Time: 0s -->
 
+
+
 ```
 
 
-Next, we used [genesis](https://groups.google.com/forum/#!searchin/raxml/visualize$20jplace$20itol%7Csort:date/raxml/IildAkMRI9Q/dBFEsUKlBQAJ) with its app labelled_tree.
+Next, we used [genesis](https://groups.google.com/forum/#!searchin/raxml/visualize$20jplace$20itol%7Csort:date/raxml/IildAkMRI9Q/dBFEsUKlBQAJ) with its app labelled_tree (not installed yet, only avaialble through `/usr/local/programs/genesis/bin/apps`).
 
 ```{r genesisPBLTPnewrefs, eval=FALSE, engine='bash'}
-/usr/local/programs/genesis/bin/apps$ ./labelled_tree\
- EPA/EddieTree/epangoutput/epa_result.jplace\
- EPA/EddieTree/RAxML_bestTree.EddienoOTUMLtree\
- EPA/EddieTree/epangoutput/epagenesisEddieTreeOpt.nwk
-<!--                                      , -->
+usr/local/programs/genesis/bin/apps$ ./labelled_tree\
+ EPA2/epangoutput/epa_result.jplace\
+ EPA2/RAxML_bipartitions.FulllennoOTUwOGMLtreewithBPinfo \
+ EPA2/epangoutput/epagenesisFulllennoOTUwOGMLtreewithBPinfo.nwk
+<!--                                       , -->
 <!--         __    __    __    __   __     __ -->
 <!--       /   ) /___) /   ) /___) (_ ` / (_ ` -->
 <!--      (___/ (___  /   / (___  (__) / (__) -->
@@ -1633,7 +1652,7 @@ Next, we used [genesis](https://groups.google.com/forum/#!searchin/raxml/visuali
 <!--                2014-2017 by Lucas Czech -->
 <!--                http://genesis-lib.org -->
 <!--                v0.19.0 -->
-<!-- INFO Jplace file: /media/projects1/FMeh/Biokitteh/EPA2/epangoutput/epa_result.jplace -->
+<!-- INFO Jplace file: EPA2/epangoutput/epa_result.jplace -->
 <!-- WARN Invalid placement with proximal_length < 0.0. -->
 <!-- WARN Invalid placement with proximal_length < 0.0. -->
 <!-- WARN Invalid placement with proximal_length < 0.0. -->
@@ -1644,24 +1663,11 @@ Next, we used [genesis](https://groups.google.com/forum/#!searchin/raxml/visuali
 <!-- WARN Invalid placement with proximal_length < 0.0. -->
 <!-- WARN Invalid placement with proximal_length < 0.0. -->
 <!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- WARN Invalid placement with proximal_length < 0.0. -->
-<!-- INFO Bootstrap Tree file: EPA2/RAxML_bestTree.FulllennoOTUwOGMLtree -->
-<!-- INFO Invalid pquery with sum of like_weight_ratio '1' > 1.0 at 'gi|508083932|gb|KC570206.1|'. -->
+<!-- INFO Bootstrap Tree file: EPA2/RAxML_bipartitions.FulllennoOTUwOGMLtreewithBPinfo -->
+<!-- INFO Invalid pquery with sum of like_weight_ratio '1' > 1.0 at 'Otu0089_Liao2018'. -->
+<!-- INFO Invalid pquery with sum of like_weight_ratio '1' > 1.0 at 'gi|508083782|gb|KC570056.1|'. -->
 <!-- INFO Done. -->
+
 ```
 
 The warnings on invalid placements and pquery are due to sequences that were 
