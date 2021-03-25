@@ -1,6 +1,6 @@
 # Phylogeny_ElectroAutotrophs
 
-Underlying code and data for the data analysis of Prévoteau *et al.* (2020). 
+Underlying code and data for the data analysis of [Prévoteau *et al.* (2021)](https://www.sciencedirect.com/science/article/abs/pii/S0956566320306898). 
 Released under GPL-3. 
 
 ## File and folder structure
